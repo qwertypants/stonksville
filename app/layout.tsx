@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  Archivo_Black,
+  Space_Grotesk,
+} from "next/font/google";
 import Image from "next/image";
+import Link from "next/link";
 import {
   ClerkProvider,
   SignInButton,
@@ -21,6 +27,20 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const archivoBlack = Archivo_Black({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-head",
+  display: "swap",
+});
+
+const space = Space_Grotesk({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-sans",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Stonksville",
   description: "Your Portfolio’s Favorite Side Quest.",
@@ -35,16 +55,21 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${archivoBlack.variable} ${space.variable}`}
         >
           <header className="flex justify-between items-center p-4">
-            <Image
-              src="/logo.png"
-              alt="Stonksville"
-              width={150}
-              height={40}
-              priority
-            />
+            <div className="flex items-center gap-8">
+              <Link href="/">
+                <Image
+                  src="/logo.png"
+                  alt="Stonksville"
+                  width={150}
+                  height={40}
+                  priority
+                />
+              </Link>
+            </div>
             <div className="flex gap-2">
               <SignedOut>
                 <SignInButton mode="modal" />
