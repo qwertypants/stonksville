@@ -3,17 +3,21 @@ import Chat from "@/components/chat";
 import { useState } from "react";
 import Ticker from "@/components/ticker";
 import Tickers from "@/components/tickers";
+import { AgentResponse } from "@/lib/types";
+import Stats from "@/components/stats";
+import { aapl } from "@/lib/mock";
 
 export default function Home() {
   const [results, setResults] = useState<string[]>([]);
   console.log(results);
   return (
     <section>
-      <Ticker results={results} setResults={setResults} />
-      {results.length > 0 && (
-        <Tickers results={results} setResults={setResults} />
-      )}
-      {results.length > 0 && <Chat isLoading={false} />}
+      {/*<Ticker results={results} setResults={setResults} />*/}
+      {/*{results.length > 0 && (*/}
+      {/*  <Tickers results={results} setResults={setResults} />*/}
+      {/*)}*/}
+      {/*{results.length > 0 && <Chat isLoading={false} />}*/}
+      <Stats ticker={aapl as AgentResponse} />
     </section>
   );
 }
