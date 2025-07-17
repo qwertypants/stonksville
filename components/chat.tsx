@@ -12,7 +12,7 @@ export default function Chat(props: ChatProps) {
     api: "/api/chat",
   });
   return (
-    <div className="flex flex-col h-full max-h-[600px] w-full max-w-2xl mx-auto border rounded-lg shadow-lg">
+    <div className="flex flex-col h-full max-h-[600px] w-full max-w-2xl mx-auto border  shadow-lg">
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.length === 0 && (
           <p className="text-gray-500 text-center">Start a conversation...</p>
@@ -25,7 +25,7 @@ export default function Chat(props: ChatProps) {
             }`}
           >
             <div
-              className={`max-w-[70%] rounded-lg px-4 py-2 ${
+              className={`max-w-[70%]  px-4 py-2 ${
                 message.role === "user"
                   ? "bg-blue-500 text-white"
                   : "bg-gray-200 text-gray-800"
