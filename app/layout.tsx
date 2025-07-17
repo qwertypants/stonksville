@@ -16,6 +16,8 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 import "./globals.css";
+import { Button } from "@/components/retroui/Button";
+import Chat from "@/components/chat";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -62,25 +64,46 @@ export default function RootLayout({
             <div className="flex items-center gap-8">
               <Link href="/">
                 <Image
-                  src="/logo.png"
+                  src="/logo-text.png"
                   alt="Stonksville"
-                  width={150}
+                  className=" transition duration-200 transform hover:scale-105"
+                  width={100}
                   height={40}
                   priority
                 />
               </Link>
             </div>
             <div className="flex gap-2">
-              <SignedOut>
-                <SignInButton mode="modal" />
-                <SignUpButton mode="modal" />
-              </SignedOut>
               <SignedIn>
                 <UserButton />
               </SignedIn>
             </div>
           </header>
-          {children}
+
+          <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 ">
+            <main className="flex flex-col gap-4 row-start-2 tems-center sm:items-start">
+              <SignedOut>
+                <Image
+                  src="/logo.png"
+                  alt="Stonksville"
+                  width={250}
+                  height={40}
+                  priority
+                />
+              </SignedOut>
+              <section className="flex gap-3">
+                <SignedOut>
+                  <SignInButton mode="modal">
+                    <Button>Sign In</Button>
+                  </SignInButton>
+                  <SignUpButton mode="modal">
+                    <Button>Register</Button>
+                  </SignUpButton>
+                </SignedOut>
+              </section>
+              <SignedIn>{children}</SignedIn>
+            </main>
+          </div>
         </body>
       </html>
     </ClerkProvider>

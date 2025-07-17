@@ -1,0 +1,52 @@
+"use client";
+import {
+  SetStateAction,
+  useEffect,
+  useState,
+  Dispatch,
+  FormEvent,
+} from "react";
+import { tickers as _tickers } from "@/lib/mock";
+import { Search } from "@/components/search";
+import { objectToArray } from "@/lib/utils";
+import { TickerProps } from "@/lib/types";
+
+export default function Ticker(props: TickerProps) {
+  const { results, setResults } = props;
+  const [tickers, setTickers] = useState<string[]>(
+    objectToArray(_tickers.data.tickers),
+  );
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<null | string>(null);
+
+  // TODO: Use real call later.
+  // useEffect(() => {
+  //   const fetchTickers = async () => {
+  //     try {
+  //       const response = await fetch("/api/tickers");
+  //       if (!response.ok) {
+  //         throw new Error(`HTTP error! status: ${response.status}`);
+  //       }
+  //       const data = await response.json();
+  //       console.log("Tickers data:", data);
+  //       setTickers(data);
+  //     } catch (err) {
+  //       console.error("Error fetching tickers:", err);
+  //       setError(err.message as string);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //
+  //   fetchTickers();
+  // }, []);
+
+  if (loading) return <div>Loading tickers...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  return (
+    <div className="relative">
+      <Search context={tickers} results={results} setResults={setResults} />
+    </div>
+  );
+}

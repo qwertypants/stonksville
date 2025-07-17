@@ -6,12 +6,11 @@ import { Button } from "@/components/retroui/Button";
 type ChatProps = {
   isLoading: boolean;
 };
-export default function ChatComponent(props: ChatProps) {
+export default function Chat(props: ChatProps) {
   const { isLoading } = props;
   const { messages, input, handleInputChange, handleSubmit } = useChat({
     api: "/api/chat",
   });
-  console.log(isLoading);
   return (
     <div className="flex flex-col h-full max-h-[600px] w-full max-w-2xl mx-auto border rounded-lg shadow-lg">
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
