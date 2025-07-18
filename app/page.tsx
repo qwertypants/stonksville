@@ -11,14 +11,17 @@ export default function Home() {
   const [results, setResults] = useState<string[]>([""]);
   console.log(results);
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <section className="flex flex-col gap-4">
         <TickerSearch results={results} setResults={setResults} />
         {results.length > 0 && (
           <TickerMenu results={results} setResults={setResults} />
         )}
 
-        <Stats ticker={aapl as AgentResponse} />
+        <div className="overflow-y-auto h-[50vh]">
+          <Stats ticker={aapl as AgentResponse} />
+          <Stats ticker={aapl as AgentResponse} />
+        </div>
       </section>
       {/*{results.length > 0 && (*/}
       {/*  <div className="absolute bottom-0">*/}

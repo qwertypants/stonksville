@@ -12,7 +12,7 @@ export default function TickerMenu(props: TickerProps) {
   return (
     <Card className="">
       <Card.Header>
-        <Card.Content className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <Card.Content className="grid grid-cols-2 md:grid-cols-4 gap-4 p-0">
           {results.map((item, index) => (
             <div className="grid gap-2 border" key={index}>
               <div className="p-1 flex items-center justify-between ">

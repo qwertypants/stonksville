@@ -81,7 +81,7 @@ export default function RootLayout({
           </header>
 
           <div className="flex items-center justify-items-center h-screen">
-            <main className="flex flex-col gap-2 tems-center sm:items-start max-w-3xl mx-auto">
+            <main className="flex flex-col gap-2 tems-center sm:items-start w-4xl mx-auto">
               <SignedOut>
                 <Image
                   src="/logo.png"
