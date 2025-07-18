@@ -1,10 +1,5 @@
 import type { Metadata } from "next";
-import {
-  Geist,
-  Geist_Mono,
-  Archivo_Black,
-  Space_Grotesk,
-} from "next/font/google";
+import { Archivo_Black, Space_Grotesk } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -17,17 +12,6 @@ import {
 } from "@clerk/nextjs";
 import "./globals.css";
 import { Button } from "@/components/retroui/Button";
-import Chat from "@/components/chat";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 const archivoBlack = Archivo_Black({
   subsets: ["latin"],

@@ -139,12 +139,10 @@ export default function Stats(props: StatsProps) {
                 options={{
                   data: earningsSeries,
                   primaryAxis: {
-                    getValue: (datum: any) => datum.primary,
+                    getValue: (datum) => datum.primary,
                     scaleType: "time",
                   },
-                  secondaryAxes: [
-                    { getValue: (datum: any) => datum.secondary },
-                  ],
+                  secondaryAxes: [{ getValue: (datum) => datum.secondary }],
                 }}
               />
             </div>
@@ -163,12 +161,10 @@ export default function Stats(props: StatsProps) {
                 options={{
                   data: analystSeries,
                   primaryAxis: {
-                    getValue: (datum: any) => datum.primary,
+                    getValue: (datum) => datum.primary,
                     scaleType: "time",
                   },
-                  secondaryAxes: [
-                    { getValue: (datum: any) => datum.secondary },
-                  ],
+                  secondaryAxes: [{ getValue: (datum) => datum.secondary }],
                 }}
               />
             </div>
@@ -185,12 +181,10 @@ export default function Stats(props: StatsProps) {
                 options={{
                   data: dividendSeries,
                   primaryAxis: {
-                    getValue: (datum: any) => datum.primary,
+                    getValue: (datum) => datum.primary,
                     scaleType: "time",
                   },
-                  secondaryAxes: [
-                    { getValue: (datum: any) => datum.secondary },
-                  ],
+                  secondaryAxes: [{ getValue: (datum) => datum.secondary }],
                 }}
               />
             </div>
@@ -209,12 +203,10 @@ export default function Stats(props: StatsProps) {
                 options={{
                   data: congressSeries,
                   primaryAxis: {
-                    getValue: (datum: any) => datum.primary,
+                    getValue: (datum) => datum.primary,
                     scaleType: "time",
                   },
-                  secondaryAxes: [
-                    { getValue: (datum: any) => datum.secondary },
-                  ],
+                  secondaryAxes: [{ getValue: (datum) => datum.secondary }],
                 }}
               />
             </div>
@@ -232,10 +224,10 @@ export default function Stats(props: StatsProps) {
               options={{
                 data: seasonalitySeries,
                 primaryAxis: {
-                  getValue: (datum: any) => datum.primary,
+                  getValue: (datum) => datum.primary,
                   scaleType: "band",
                 },
-                secondaryAxes: [{ getValue: (datum: any) => datum.secondary }],
+                secondaryAxes: [{ getValue: (datum) => datum.secondary }],
               }}
             />
           </Card.Content>
@@ -252,10 +244,10 @@ export default function Stats(props: StatsProps) {
               options={{
                 data: insiderSeries,
                 primaryAxis: {
-                  getValue: (datum: any) => datum.primary,
+                  getValue: (datum) => datum.primary,
                   scaleType: "time",
                 },
-                secondaryAxes: [{ getValue: (datum: any) => datum.secondary }],
+                secondaryAxes: [{ getValue: (datum) => datum.secondary }],
               }}
             />
           </Card.Content>
