@@ -130,7 +130,7 @@ export default function Stats(props: StatsProps) {
           <Card.Title className="text-base">
             Earnings: EPS vs Revenue
           </Card.Title>
-          <Card.Description>
+          <Card.Content>
             <div className="h-40">
               <Chart
                 options={{
@@ -145,84 +145,113 @@ export default function Stats(props: StatsProps) {
                 }}
               />
             </div>
-          </Card.Description>
+          </Card.Content>
         </Card.Header>
       </Card>
 
-      {/*/!* Analyst Ratings Chart *!/*/}
-      {/*<div className="bg-white shadow rounded-2xl p-4">*/}
-      {/*  <h2 className="text-xl font-bold mb-2">Analyst Price Targets</h2>*/}
-      {/*  <Chart*/}
-      {/*    options={{*/}
-      {/*      data: analystSeries,*/}
-      {/*      primaryAxis: {*/}
-      {/*        getValue: (datum: any) => datum.primary,*/}
-      {/*        scaleType: "time",*/}
-      {/*      },*/}
-      {/*      secondaryAxes: [{ getValue: (datum: any) => datum.secondary }],*/}
-      {/*    }}*/}
-      {/*  />*/}
-      {/*</div>*/}
+      <Card>
+        <Card.Header>
+          <Card.Title className="text-base">Analyst Price Targets</Card.Title>
+          <Card.Content>
+            <div className="h-40">
+              <Chart
+                options={{
+                  data: analystSeries,
+                  primaryAxis: {
+                    getValue: (datum: any) => datum.primary,
+                    scaleType: "time",
+                  },
+                  secondaryAxes: [
+                    { getValue: (datum: any) => datum.secondary },
+                  ],
+                }}
+              />
+            </div>
+          </Card.Content>
+        </Card.Header>
+      </Card>
 
-      {/*/!* Dividends Chart *!/*/}
-      {/*<div className="bg-white shadow rounded-2xl p-4">*/}
-      {/*  <h2 className="text-xl font-bold mb-2">Dividends Over Time</h2>*/}
-      {/*  <Chart*/}
-      {/*    options={{*/}
-      {/*      data: dividendSeries,*/}
-      {/*      primaryAxis: {*/}
-      {/*        getValue: (datum: any) => datum.primary,*/}
-      {/*        scaleType: "time",*/}
-      {/*      },*/}
-      {/*      secondaryAxes: [{ getValue: (datum: any) => datum.secondary }],*/}
-      {/*    }}*/}
-      {/*  />*/}
-      {/*</div>*/}
+      <Card>
+        <Card.Header>
+          <Card.Title className="text-base">Dividends Over Time</Card.Title>
+          <Card.Content>
+            <div className="h-40">
+              <Chart
+                options={{
+                  data: dividendSeries,
+                  primaryAxis: {
+                    getValue: (datum: any) => datum.primary,
+                    scaleType: "time",
+                  },
+                  secondaryAxes: [
+                    { getValue: (datum: any) => datum.secondary },
+                  ],
+                }}
+              />
+            </div>
+          </Card.Content>
+        </Card.Header>
+      </Card>
 
-      {/*/!* Congress Trades Chart *!/*/}
-      {/*<div className="bg-white shadow rounded-2xl p-4">*/}
-      {/*  <h2 className="text-xl font-bold mb-2">Congress Trades (Count)</h2>*/}
-      {/*  <Chart*/}
-      {/*    options={{*/}
-      {/*      data: congressSeries,*/}
-      {/*      primaryAxis: {*/}
-      {/*        getValue: (datum: any) => datum.primary,*/}
-      {/*        scaleType: "time",*/}
-      {/*      },*/}
-      {/*      secondaryAxes: [{ getValue: (datum: any) => datum.secondary }],*/}
-      {/*    }}*/}
-      {/*  />*/}
-      {/*</div>*/}
+      <Card>
+        <Card.Header>
+          <Card.Title className="text-base">Congress Trades (Count)</Card.Title>
+          <Card.Content>
+            <div className="h-40">
+              <Chart
+                options={{
+                  data: congressSeries,
+                  primaryAxis: {
+                    getValue: (datum: any) => datum.primary,
+                    scaleType: "time",
+                  },
+                  secondaryAxes: [
+                    { getValue: (datum: any) => datum.secondary },
+                  ],
+                }}
+              />
+            </div>
+          </Card.Content>
+        </Card.Header>
+      </Card>
 
-      {/*/!* Seasonality Chart *!/*/}
-      {/*<div className="bg-white shadow rounded-2xl p-4">*/}
-      {/*  <h2 className="text-xl font-bold mb-2">Seasonality (Avg Change)</h2>*/}
-      {/*  <Chart*/}
-      {/*    options={{*/}
-      {/*      data: seasonalitySeries,*/}
-      {/*      primaryAxis: {*/}
-      {/*        getValue: (datum: any) => datum.primary,*/}
-      {/*        scaleType: "band",*/}
-      {/*      },*/}
-      {/*      secondaryAxes: [{ getValue: (datum: any) => datum.secondary }],*/}
-      {/*    }}*/}
-      {/*  />*/}
-      {/*</div>*/}
+      <Card>
+        <Card.Header>
+          <Card.Title className="text-base">
+            Seasonality (Avg Change)
+          </Card.Title>
+          <Card.Content className="h-40">
+            <Chart
+              options={{
+                data: seasonalitySeries,
+                primaryAxis: {
+                  getValue: (datum: any) => datum.primary,
+                  scaleType: "band",
+                },
+                secondaryAxes: [{ getValue: (datum: any) => datum.secondary }],
+              }}
+            />
+          </Card.Content>
+        </Card.Header>
+      </Card>
 
-      {/*/!* Insider Trades Chart *!/*/}
-      {/*<div className="bg-white shadow rounded-2xl p-4">*/}
-      {/*  <h2 className="text-xl font-bold mb-2">Insider Trades: Shares</h2>*/}
-      {/*  <Chart*/}
-      {/*    options={{*/}
-      {/*      data: insiderSeries,*/}
-      {/*      primaryAxis: {*/}
-      {/*        getValue: (datum: any) => datum.primary,*/}
-      {/*        scaleType: "time",*/}
-      {/*      },*/}
-      {/*      secondaryAxes: [{ getValue: (datum: any) => datum.secondary }],*/}
-      {/*    }}*/}
-      {/*  />*/}
-      {/*</div>*/}
+      <Card>
+        <Card.Header>
+          <Card.Title className="text-base">Insider Trades: Shares</Card.Title>
+          <Card.Content className="h-40">
+            <Chart
+              options={{
+                data: insiderSeries,
+                primaryAxis: {
+                  getValue: (datum: any) => datum.primary,
+                  scaleType: "time",
+                },
+                secondaryAxes: [{ getValue: (datum: any) => datum.secondary }],
+              }}
+            />
+          </Card.Content>
+        </Card.Header>
+      </Card>
     </div>
   );
 }
