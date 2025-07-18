@@ -23,11 +23,7 @@ export default function Home() {
           <Stats ticker={aapl as AgentResponse} />
         </div>
       </section>
-      {/*{results.length > 0 && (*/}
-      {/*  <div className="absolute bottom-0">*/}
-      {/*    <Chat isLoading={false} />*/}
-      {/*  </div>*/}
-      {/*)}*/}
+      {results.length > 0 && <Chat isLoading={false} />}
     </div>
   );
 }

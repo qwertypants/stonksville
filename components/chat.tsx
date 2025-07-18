@@ -12,7 +12,7 @@ export default function Chat(props: ChatProps) {
     api: "/api/chat",
   });
   return (
-    <div className="flex flex-col max-h-[30vh] w-full  border bg-white">
+    <div className="flex flex-col max-h-[25vh] w-full  border bg-white">
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.length === 0 && (
           <p className="text-gray-500 text-center">Start a conversation...</p>
@@ -43,7 +43,7 @@ export default function Chat(props: ChatProps) {
             type="text"
             value={input}
             onChange={handleInputChange}
-            className="w-full"
+            className="w-full px-2"
             placeholder="Type your message..."
             disabled={isLoading}
           />
