@@ -13,36 +13,35 @@ import { TickerProps } from "@/lib/types";
 
 export default function TickerSearch(props: TickerProps) {
   const { results, setResults } = props;
-  const [tickers, setTickers] = useState<string[]>(
-    objectToArray(_tickers.data.tickers),
-  );
-  const [loading, setLoading] = useState(false);
+  const [tickers, setTickers] = useState<Record<string, string>[]>();
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<null | string>(null);
 
-  // TODO: Use real call later.
-  // useEffect(() => {
-  //   const fetchTickers = async () => {
-  //     try {
-  //       const response = await fetch("/api/tickers");
-  //       if (!response.ok) {
-  //         throw new Error(`HTTP error! status: ${response.status}`);
-  //       }
-  //       const data = await response.json();
-  //       console.log("TickerMenu data:", data);
-  //       setTickers(data);
-  //     } catch (err) {
-  //       console.error("Error fetching tickers:", err);
-  //       setError(err.message as string);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //
-  //   fetchTickers();
-  // }, []);
+  useEffect(() => {
+    const fetchTickers = async () => {
+      try {
+        const response = await fetch("/api/tickers");
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setTickers(data.data.tickers);
+      } catch (err) {
+        console.error("Error fetching tickers:", err);
+        // @ts-ignore
+        setError(err.message as string);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTickers();
+  }, []);
 
   if (loading) return <div>Loading tickers...</div>;
   if (error) return <div>Error: {error}</div>;
+
+  if (!tickers) return;
 
   return (
     <div className="relative">

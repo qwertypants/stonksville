@@ -9,10 +9,11 @@ import { SearchProps } from "@/lib/types";
  */
 export function Search(props: SearchProps) {
   const { context, results, setResults } = props;
-  const fuse = new Fuse(context);
+  const searchContext = Object.keys(context!);
+
+  const fuse = new Fuse(searchContext);
   const [searchResults, setSearchResults] = useState<FuseResult<string>[]>([]);
   const [searchText, setSearchText] = useState("");
-  const [isFocused, setIsFocused] = useState(false);
 
   function handleSearch(event: KeyboardEvent<HTMLInputElement>) {
     const search = event.currentTarget.value;
@@ -22,13 +23,13 @@ export function Search(props: SearchProps) {
   }
 
   function handleAddTicker(ticker: string) {
+    console.log(ticker);
     setResults([...results, ticker]);
   }
 
   function resetSearchResults() {
     setSearchResults([]);
     setSearchText("");
-    setIsFocused(false);
   }
 
   function handleBlur() {
@@ -49,7 +50,6 @@ export function Search(props: SearchProps) {
           onChange={(e) => setSearchText(e.target.value)}
           value={searchText}
           required
-          onFocus={() => setIsFocused(true)}
         />
         {searchResults.length > 0 && (
           <section className="mt-2">

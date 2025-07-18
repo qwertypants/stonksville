@@ -6,7 +6,7 @@ export type TickerProps = {
 };
 
 export interface SearchProps extends TickerProps {
-  context: string[];
+  context: Record<string, string>[] | undefined;
 }
 
 export type StatsProps = {

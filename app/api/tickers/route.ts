@@ -2,9 +2,6 @@ import { NextResponse } from "next/server";
 import { API_URL } from "@/lib/constants";
 
 export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const usMarketOnly = searchParams.get("us_market_only") || "false";
-
   const headers = new Headers();
   headers.append("accept", "application/json");
 
@@ -16,7 +13,7 @@ export async function GET(request: Request) {
 
   try {
     const response = await fetch(
-      `${API_URL}/quant/tickers?us_market_only=${usMarketOnly}`,
+      `${API_URL}/quant/tickers?us_market_only=true`,
       requestOptions,
     );
 
