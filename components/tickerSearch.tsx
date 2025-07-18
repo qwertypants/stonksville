@@ -11,7 +11,7 @@ import { Search } from "@/components/search";
 import { objectToArray } from "@/lib/utils";
 import { TickerProps } from "@/lib/types";
 
-export default function Ticker(props: TickerProps) {
+export default function TickerSearch(props: TickerProps) {
   const { results, setResults } = props;
   const [tickers, setTickers] = useState<string[]>(
     objectToArray(_tickers.data.tickers),
@@ -28,7 +28,7 @@ export default function Ticker(props: TickerProps) {
   //         throw new Error(`HTTP error! status: ${response.status}`);
   //       }
   //       const data = await response.json();
-  //       console.log("Tickers data:", data);
+  //       console.log("TickerMenu data:", data);
   //       setTickers(data);
   //     } catch (err) {
   //       console.error("Error fetching tickers:", err);

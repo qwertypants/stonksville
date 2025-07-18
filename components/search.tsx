@@ -38,7 +38,7 @@ export function Search(props: SearchProps) {
 
   return (
     <div
-      className={` w-full z-50 mx-auto mb-2 overflow-y-scroll bg-white border ${searchResults.length > 0 ? "h-[40vh] drop-shadow-2xl" : ""} `}
+      className={` w-full z-50 mx-auto  overflow-y-scroll bg-white border ${searchResults.length > 0 ? "h-[40vh] drop-shadow-2xl" : ""} `}
     >
       <div className="relative">
         <Input

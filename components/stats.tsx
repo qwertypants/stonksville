@@ -124,17 +124,132 @@ export default function Stats(props: StatsProps) {
   ];
 
   return (
-    <div className="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <Card>
-        <Card.Header>
-          <Card.Title className="text-base">
-            Earnings: EPS vs Revenue
-          </Card.Title>
-          <Card.Content>
-            <div className="h-40">
+    <section className="bg-accent p-2">
+      <h1 className="uppercase text-sm tracking-wider">appl</h1>
+      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Card>
+          <Card.Header>
+            <Card.Title className="text-base">
+              Earnings: EPS vs Revenue
+            </Card.Title>
+            <Card.Content>
+              <div className="h-24">
+                <Chart
+                  options={{
+                    data: earningsSeries,
+                    primaryAxis: {
+                      getValue: (datum: any) => datum.primary,
+                      scaleType: "time",
+                    },
+                    secondaryAxes: [
+                      { getValue: (datum: any) => datum.secondary },
+                    ],
+                  }}
+                />
+              </div>
+            </Card.Content>
+          </Card.Header>
+        </Card>
+
+        <Card>
+          <Card.Header>
+            <Card.Title className="text-base">Analyst Price Targets</Card.Title>
+            <Card.Content>
+              <div className="h-24">
+                <Chart
+                  options={{
+                    data: analystSeries,
+                    primaryAxis: {
+                      getValue: (datum: any) => datum.primary,
+                      scaleType: "time",
+                    },
+                    secondaryAxes: [
+                      { getValue: (datum: any) => datum.secondary },
+                    ],
+                  }}
+                />
+              </div>
+            </Card.Content>
+          </Card.Header>
+        </Card>
+
+        <Card>
+          <Card.Header>
+            <Card.Title className="text-base">Dividends Over Time</Card.Title>
+            <Card.Content>
+              <div className="h-24">
+                <Chart
+                  options={{
+                    data: dividendSeries,
+                    primaryAxis: {
+                      getValue: (datum: any) => datum.primary,
+                      scaleType: "time",
+                    },
+                    secondaryAxes: [
+                      { getValue: (datum: any) => datum.secondary },
+                    ],
+                  }}
+                />
+              </div>
+            </Card.Content>
+          </Card.Header>
+        </Card>
+
+        <Card>
+          <Card.Header>
+            <Card.Title className="text-base">
+              Congress Trades (Count)
+            </Card.Title>
+            <Card.Content>
+              <div className="h-24">
+                <Chart
+                  options={{
+                    data: congressSeries,
+                    primaryAxis: {
+                      getValue: (datum: any) => datum.primary,
+                      scaleType: "time",
+                    },
+                    secondaryAxes: [
+                      { getValue: (datum: any) => datum.secondary },
+                    ],
+                  }}
+                />
+              </div>
+            </Card.Content>
+          </Card.Header>
+        </Card>
+
+        <Card>
+          <Card.Header>
+            <Card.Title className="text-base">
+              Seasonality (Avg Change)
+            </Card.Title>
+            <Card.Content className="h-24">
               <Chart
                 options={{
-                  data: earningsSeries,
+                  data: seasonalitySeries,
+                  primaryAxis: {
+                    getValue: (datum: any) => datum.primary,
+                    scaleType: "band",
+                  },
+                  secondaryAxes: [
+                    { getValue: (datum: any) => datum.secondary },
+                  ],
+                }}
+              />
+            </Card.Content>
+          </Card.Header>
+        </Card>
+
+        <Card>
+          <Card.Header>
+            <Card.Title className="text-base">
+              Insider Trades: Shares
+            </Card.Title>
+            <Card.Content className="h-24">
+              <Chart
+                options={{
+                  data: insiderSeries,
                   primaryAxis: {
                     getValue: (datum: any) => datum.primary,
                     scaleType: "time",
@@ -144,114 +259,10 @@ export default function Stats(props: StatsProps) {
                   ],
                 }}
               />
-            </div>
-          </Card.Content>
-        </Card.Header>
-      </Card>
-
-      <Card>
-        <Card.Header>
-          <Card.Title className="text-base">Analyst Price Targets</Card.Title>
-          <Card.Content>
-            <div className="h-40">
-              <Chart
-                options={{
-                  data: analystSeries,
-                  primaryAxis: {
-                    getValue: (datum: any) => datum.primary,
-                    scaleType: "time",
-                  },
-                  secondaryAxes: [
-                    { getValue: (datum: any) => datum.secondary },
-                  ],
-                }}
-              />
-            </div>
-          </Card.Content>
-        </Card.Header>
-      </Card>
-
-      <Card>
-        <Card.Header>
-          <Card.Title className="text-base">Dividends Over Time</Card.Title>
-          <Card.Content>
-            <div className="h-40">
-              <Chart
-                options={{
-                  data: dividendSeries,
-                  primaryAxis: {
-                    getValue: (datum: any) => datum.primary,
-                    scaleType: "time",
-                  },
-                  secondaryAxes: [
-                    { getValue: (datum: any) => datum.secondary },
-                  ],
-                }}
-              />
-            </div>
-          </Card.Content>
-        </Card.Header>
-      </Card>
-
-      <Card>
-        <Card.Header>
-          <Card.Title className="text-base">Congress Trades (Count)</Card.Title>
-          <Card.Content>
-            <div className="h-40">
-              <Chart
-                options={{
-                  data: congressSeries,
-                  primaryAxis: {
-                    getValue: (datum: any) => datum.primary,
-                    scaleType: "time",
-                  },
-                  secondaryAxes: [
-                    { getValue: (datum: any) => datum.secondary },
-                  ],
-                }}
-              />
-            </div>
-          </Card.Content>
-        </Card.Header>
-      </Card>
-
-      <Card>
-        <Card.Header>
-          <Card.Title className="text-base">
-            Seasonality (Avg Change)
-          </Card.Title>
-          <Card.Content className="h-40">
-            <Chart
-              options={{
-                data: seasonalitySeries,
-                primaryAxis: {
-                  getValue: (datum: any) => datum.primary,
-                  scaleType: "band",
-                },
-                secondaryAxes: [{ getValue: (datum: any) => datum.secondary }],
-              }}
-            />
-          </Card.Content>
-        </Card.Header>
-      </Card>
-
-      <Card>
-        <Card.Header>
-          <Card.Title className="text-base">Insider Trades: Shares</Card.Title>
-          <Card.Content className="h-40">
-            <Chart
-              options={{
-                data: insiderSeries,
-                primaryAxis: {
-                  getValue: (datum: any) => datum.primary,
-                  scaleType: "time",
-                },
-                secondaryAxes: [{ getValue: (datum: any) => datum.secondary }],
-              }}
-            />
-          </Card.Content>
-        </Card.Header>
-      </Card>
-    </div>
+            </Card.Content>
+          </Card.Header>
+        </Card>
+      </div>
+    </section>
   );
 }

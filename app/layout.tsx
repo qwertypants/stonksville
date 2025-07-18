@@ -66,7 +66,7 @@ export default function RootLayout({
                 <Image
                   src="/logo-text.png"
                   alt="Stonksville"
-                  className=" transition duration-200 transform hover:scale-105"
+                  className=" transition duration-200"
                   width={100}
                   height={40}
                   priority
@@ -80,8 +80,8 @@ export default function RootLayout({
             </div>
           </header>
 
-          <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 ">
-            <main className="flex flex-col gap-4 row-start-2 tems-center sm:items-start">
+          <div className="flex items-center justify-items-center h-screen">
+            <main className="flex flex-col gap-2 tems-center sm:items-start max-w-3xl mx-auto">
               <SignedOut>
                 <Image
                   src="/logo.png"

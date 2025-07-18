@@ -1,23 +1,30 @@
 "use client";
 import Chat from "@/components/chat";
 import { useState } from "react";
-import Ticker from "@/components/ticker";
-import Tickers from "@/components/tickers";
+import TickerSearch from "@/components/tickerSearch";
+import TickerMenu from "@/components/tickerMenu";
 import { AgentResponse } from "@/lib/types";
 import Stats from "@/components/stats";
 import { aapl } from "@/lib/mock";
 
 export default function Home() {
-  const [results, setResults] = useState<string[]>([]);
+  const [results, setResults] = useState<string[]>([""]);
   console.log(results);
   return (
-    <section>
-      {/*<Ticker results={results} setResults={setResults} />*/}
+    <div className="relative">
+      <section className="flex flex-col gap-4">
+        <TickerSearch results={results} setResults={setResults} />
+        {results.length > 0 && (
+          <TickerMenu results={results} setResults={setResults} />
+        )}
+
+        <Stats ticker={aapl as AgentResponse} />
+      </section>
       {/*{results.length > 0 && (*/}
-      {/*  <Tickers results={results} setResults={setResults} />*/}
+      {/*  <div className="absolute bottom-0">*/}
+      {/*    <Chat isLoading={false} />*/}
+      {/*  </div>*/}
       {/*)}*/}
-      {/*{results.length > 0 && <Chat isLoading={false} />}*/}
-      <Stats ticker={aapl as AgentResponse} />
-    </section>
+    </div>
   );
 }
