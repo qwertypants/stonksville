@@ -15,7 +15,7 @@ export default function TickerMenu(props: TickerProps) {
         <Card.Content className="grid grid-cols-2 md:grid-cols-4 gap-4 p-0">
           {results.map((item, index) => (
             <div className="grid gap-2 border" key={index}>
-              <div className="p-1 flex items-center justify-between ">
+              <div className="p-2 flex items-start justify-between ">
                 <span className="text-sm">{item}</span>
                 <button
                   className="hover:cursor-pointer hover:text-destructive"

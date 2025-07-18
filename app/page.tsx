@@ -8,22 +8,23 @@ import Stats from "@/components/stats";
 import { aapl } from "@/lib/mock";
 
 export default function Home() {
-  const [results, setResults] = useState<string[]>([""]);
+  const [results, setResults] = useState<string[]>([]);
   console.log(results);
+  const hasResults = results.length > 0;
   return (
     <div className="relative w-full">
       <section className="flex flex-col gap-4">
         <TickerSearch results={results} setResults={setResults} />
-        {results.length > 0 && (
-          <TickerMenu results={results} setResults={setResults} />
-        )}
+        {hasResults && <TickerMenu results={results} setResults={setResults} />}
 
-        <div className="overflow-y-auto h-[50vh]">
-          <Stats ticker={aapl as AgentResponse} />
-          <Stats ticker={aapl as AgentResponse} />
-        </div>
+        {hasResults && (
+          <div className="overflow-y-auto h-[50vh]">
+            <Stats ticker={aapl as AgentResponse} />
+            <Stats ticker={aapl as AgentResponse} />
+          </div>
+        )}
       </section>
-      {results.length > 0 && <Chat isLoading={false} />}
+      {hasResults && <Chat isLoading={false} />}
     </div>
   );
 }
