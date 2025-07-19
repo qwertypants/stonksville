@@ -1,14 +1,14 @@
 "use client";
 import { useEffect, useState } from "react";
 import React from "react";
-import { Chart } from "react-charts";
-import { Card } from "@/components/retroui/Card";
-import { StatsProps, Dividend, Seasonality, InsiderTrade } from "@/lib/types";
+import { StatsProps, ChartProps } from "@/lib/types";
+import Charts from "@/components/charts";
 
 export default function Stats(props: StatsProps) {
-  const { ticker, setResults } = props;
+  const { ticker, setStatResults } = props;
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<null | string>(null);
+  const [chartData, setChartData] = useState<ChartProps>();
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -37,6 +37,12 @@ export default function Stats(props: StatsProps) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
+        setStatResults({
+          ticker,
+          data,
+          show: true,
+        });
+        setChartData(data);
         console.log("Response data:", data);
       } catch (err) {
         // @ts-ignore
@@ -47,9 +53,10 @@ export default function Stats(props: StatsProps) {
     };
 
     fetchStats();
-  }, [ticker]);
+  }, [setStatResults, ticker]);
 
   if (loading) return <div>Loading stats...</div>;
   if (error) return <div>Error: {error}</div>;
-  return <div>{ticker}</div>;
+
+  return <Charts ticker={ticker} data={chartData} />;
 }

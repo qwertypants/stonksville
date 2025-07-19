@@ -9,9 +9,22 @@ export interface SearchProps extends TickerProps {
   context: Record<string, string>[] | undefined;
 }
 
+export type StatsResult = {
+  ticker: string;
+  show: boolean;
+  data: unknown;
+};
+
 export interface StatsProps extends TickerProps {
   ticker: string;
+  statResults?: string[];
+  setStatResults: Dispatch<SetStateAction<StatsResult[]>>;
 }
+
+export type ChartProps = {
+  ticker: string;
+  data: AgentResponse;
+};
 
 export type AgentResponse = {
   agent_response: string;
