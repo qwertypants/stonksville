@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { API_URL } from "@/lib/constants";
 
-export async function GET(request: Request) {
+export async function GET() {
   const headers = new Headers();
   headers.append("accept", "application/json");
 

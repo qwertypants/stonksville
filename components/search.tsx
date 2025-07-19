@@ -8,7 +8,7 @@ import { SearchProps } from "@/lib/types";
  * @param props list of searchable options.
  */
 export function Search(props: SearchProps) {
-  const { context, results, setResults } = props;
+  const { context, results = [], setResults } = props;
   const searchContext = Object.keys(context!);
 
   const fuse = new Fuse(searchContext);
@@ -21,10 +21,11 @@ export function Search(props: SearchProps) {
     const result = fuse.search(search);
     setSearchResults(result);
   }
-
   function handleAddTicker(ticker: string) {
-    console.log(ticker);
-    setResults([...results, ticker]);
+    if (context) {
+      // @ts-ignore
+      setResults([...results, context[ticker]]);
+    }
   }
 
   function resetSearchResults() {

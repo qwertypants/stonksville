@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 
 export type TickerProps = {
-  results: string[];
+  results?: string[];
   setResults: Dispatch<SetStateAction<string[]>>;
 };
 
@@ -9,9 +9,9 @@ export interface SearchProps extends TickerProps {
   context: Record<string, string>[] | undefined;
 }
 
-export type StatsProps = {
-  ticker: AgentResponse;
-};
+export interface StatsProps extends TickerProps {
+  ticker: string;
+}
 
 export type AgentResponse = {
   agent_response: string;
