@@ -20,7 +20,7 @@ export default function Home() {
         {hasResults && <TickerMenu results={results} setResults={setResults} />}
 
         {hasResults && (
-          <div className="overflow-y-auto h-[50vh]">
+          <div className="overflow-y-scroll overflow-x-hidden h-[50vh]">
             {results.map((result, index) => (
               <Stats
                 key={index}

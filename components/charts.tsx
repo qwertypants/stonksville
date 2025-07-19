@@ -125,7 +125,7 @@ export default function Charts(props: ChartProps) {
 
   return (
     <section className="relative pb-4 bg-gray-50 mb-2">
-      <h1 className="p-2 sticky top-0 uppercase tracking-wider py-1 backdrop-blur bg-white/80">
+      <h1 className="p-2 sticky top-0 font-bold uppercase tracking-wider py-1 backdrop-blur bg-white/80">
         {ticker}
       </h1>
       <Text className="font-sans text-base p-2">{data.agent_response}</Text>
