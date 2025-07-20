@@ -1,3 +1,4 @@
+/** Versatile button with size and variant options. */
 import { cn } from "@/lib/utils";
 import { cva, VariantProps } from "class-variance-authority";
 import React, { ButtonHTMLAttributes } from "react";
@@ -33,6 +34,7 @@ export interface IButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {}
 
+/** React button component following RetroUI style guide. */
 export const Button = React.forwardRef<HTMLButtonElement, IButtonProps>(
   (
     {

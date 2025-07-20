@@ -1,3 +1,4 @@
+/** Fetches statistics for a ticker and renders associated charts. */
 "use client";
 import { useEffect, useState } from "react";
 import React from "react";
@@ -6,6 +7,9 @@ import Charts from "@/components/charts";
 import { Alert } from "@/components/retroui/Alert";
 import Image from "next/image";
 
+/**
+ * Loads data for the given ticker and notifies parent via `setChatContext`.
+ */
 export default function Stats(props: StatsProps) {
   const { ticker, setChatContext } = props;
   const [loading, setLoading] = useState(true);
@@ -13,6 +17,7 @@ export default function Stats(props: StatsProps) {
   const [chartData, setChartData] = useState<ChartProps>();
 
   useEffect(() => {
+    // Retrieve analytics for the ticker from the API
     const fetchStats = async () => {
       const headers = new Headers();
       headers.append("accept", "application/json");
@@ -40,6 +45,7 @@ export default function Stats(props: StatsProps) {
           setError(data.detail);
           throw new Error(`HTTP error! status: ${response.status}`);
         } else {
+          // Provide the fetched context back to the chat component
           setChatContext({
             ticker,
             context: data.agent_response,

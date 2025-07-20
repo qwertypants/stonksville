@@ -4,13 +4,23 @@ import { Alert } from "@/components/retroui/Alert";
 import { Search } from "@/components/search";
 import { TickerProps } from "@/lib/types";
 import Image from "next/image";
+/**
+ * Fetches available stock tickers on mount and passes them to the
+ * {@link Search} component. Displays any fetch errors using {@link Alert}.
+ */
 
+/**
+ * Wrapper around the {@link Search} component that loads ticker data.
+ *
+ * @param props - Current search results and setter from the parent.
+ */
 export default function TickerSearch(props: TickerProps) {
   const { results, setResults } = props;
   const [tickers, setTickers] = useState<Record<string, string>[]>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<null | string>();
 
+  // Fetch list of tickers once on initial mount
   useEffect(() => {
     const getTickers = async () => {
       try {

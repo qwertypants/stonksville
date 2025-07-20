@@ -1,3 +1,7 @@
+/**
+ * Simple placeholder for a user settings page. The route is protected by
+ * Clerk, so unauthenticated users will be redirected to sign up.
+ */
 export default function SettingsPage() {
   return (
     <main className=" ">

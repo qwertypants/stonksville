@@ -1,3 +1,5 @@
+/**
+ * Typography component supporting various semantic tags. */
 import type { ElementType, HTMLAttributes } from "react";
 import { type VariantProps, cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
@@ -27,6 +29,7 @@ interface TextProps
   className?: string;
 }
 
+/** Generic text element that maps the `as` prop to a tag. */
 export const Text = (props: TextProps) => {
   const { className, as, ...otherProps } = props;
   const Tag: ElementType = as || "p";

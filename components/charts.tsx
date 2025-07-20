@@ -3,6 +3,18 @@ import { Card } from "@/components/retroui/Card";
 import { ChartProps, Dividend, Seasonality, InsiderTrade } from "@/lib/types";
 import { Text } from "@/components/retroui/Text";
 
+/**
+ * Visualization of various stock statistics such as earnings, analyst ratings
+ * and insider trades. Each data series is derived from the `ChartProps`
+ * payload returned by the backend.
+ */
+
+/**
+ * Renders a grid of charts for a specific ticker.
+ *
+ * @param props - Data and ticker label returned by the analytics API.
+ * @returns React component with multiple chart visualizations.
+ */
 export default function Charts(props: ChartProps) {
   const { data, ticker } = props;
   // 1. Earnings: EPS vs Revenue (in billions)
@@ -30,6 +42,7 @@ export default function Charts(props: ChartProps) {
         },
         {
           primary: new Date(data.agent_sources.earnings.earnings_next.date),
+          // Convert to billions for easier reading
           secondary:
             data.agent_sources.earnings.earnings_next.revenue_estimate / 1e9,
         },
@@ -41,6 +54,7 @@ export default function Charts(props: ChartProps) {
   const ratingsByDate = data.agent_sources.analyst_ratings.reduce<
     Record<string, number[]>
   >((acc, { date, target }) => {
+    // Group analyst targets by report date
     const t = parseFloat(target);
     if (!isNaN(t)) {
       acc[date] = acc[date] || [];
@@ -75,6 +89,7 @@ export default function Charts(props: ChartProps) {
   const tradesByDate = data.agent_sources.congress_trades.reduce<
     Record<string, { buy: number; sell: number }>
   >((acc, { tx_date, tx_type }) => {
+    // Count the number of buy/sell transactions per day
     const d = tx_date;
     acc[d] = acc[d] || { buy: 0, sell: 0 };
     if (tx_type === "buy") {

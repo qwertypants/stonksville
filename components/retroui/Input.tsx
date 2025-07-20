@@ -1,8 +1,12 @@
+/** Input component styled for RetroUI design. */
 import React, { InputHTMLAttributes } from "react";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
 }
+/**
+ * Basic input with error styling handled via `aria-invalid`.
+ */
 
 export const Input: React.FC<InputProps> = ({
   type = "text",

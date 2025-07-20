@@ -1,6 +1,10 @@
+/** Multi-line text area styled for RetroUI. */
 import React from "react";
 import { cn } from "@/lib/utils";
 
+/**
+ * Controlled textarea component used in forms.
+ */
 export function Textarea({
   type = "text",
   placeholder = "Enter text...",

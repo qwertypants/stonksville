@@ -1,11 +1,16 @@
+/** Displays selected tickers allowing removal. */
 "use client";
 import { TickerProps } from "@/lib/types";
 import { Card } from "@/components/retroui/Card";
 
+/**
+ * Menu of selected tickers with remove buttons.
+ */
 export default function TickerMenu(props: TickerProps) {
   const { results, setResults } = props;
 
   function handleRemoveSelection(selection: string) {
+    // Remove the ticker from the current selection list
     const newResults = results?.filter((res) => res !== selection);
     if (newResults) {
       setResults(newResults);

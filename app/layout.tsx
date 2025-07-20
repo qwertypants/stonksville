@@ -13,6 +13,13 @@ import {
 import "./globals.css";
 import { Button } from "@/components/retroui/Button";
 
+/**
+ * Application layout applied to all routes. Sets up global fonts, Clerk
+ * authentication wrappers and common header. Only authenticated users can see
+ * children components.
+ */
+
+// Custom fonts used throughout the application
 const archivoBlack = Archivo_Black({
   subsets: ["latin"],
   weight: "400",
@@ -32,6 +39,11 @@ export const metadata: Metadata = {
   description: "Your Portfolio’s Favorite Side Quest.",
 };
 
+/**
+ * Root layout wrapping every page. Provides global styling and authentication
+ * gate. The children will only render inside the `SignedIn` wrapper when a
+ * user is authenticated.
+ */
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -56,6 +68,7 @@ export default function RootLayout({
                 </Link>
               </div>
               <div className="flex gap-2">
+                {/* Quick access to account management when signed in */}
                 <SignedIn>
                   <UserButton />
                 </SignedIn>
@@ -65,6 +78,7 @@ export default function RootLayout({
 
           <div className="flex items-center justify-items-center">
             <main className="flex flex-col gap-2 tems-center sm:items-start w-4xl mx-auto">
+              {/* Splash screen prompting login if user is signed out */}
               <SignedOut>
                 <div className="flex justify-center items-center w-full h-screen">
                   <div className="">
