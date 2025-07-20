@@ -7,9 +7,10 @@ import {
   FormEvent,
 } from "react";
 import { tickers as _tickers } from "@/lib/mock";
+import { Alert } from "@/components/retroui/Alert";
 import { Search } from "@/components/search";
-import { objectToArray } from "@/lib/utils";
 import { TickerProps } from "@/lib/types";
+import Image from "next/image";
 
 export default function TickerSearch(props: TickerProps) {
   const { results, setResults } = props;
@@ -17,7 +18,7 @@ export default function TickerSearch(props: TickerProps) {
     _tickers.data.tickers,
   );
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<null | string>(null);
+  const [error, setError] = useState<null | string>();
 
   // useEffect(() => {
   //   const getTickers = async () => {
@@ -41,7 +42,22 @@ export default function TickerSearch(props: TickerProps) {
   // }, []);
 
   if (loading) return <div>Loading tickers...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (error)
+    return (
+      <Alert>
+        <Alert.Title>Error</Alert.Title>
+        <Alert.Description className="flex">
+          <Image
+            src="/error.png"
+            alt="Stonksville"
+            width={250}
+            height={250}
+            priority
+          />
+          {error}
+        </Alert.Description>
+      </Alert>
+    );
 
   if (!tickers) return;
 

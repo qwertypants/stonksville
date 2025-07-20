@@ -19,6 +19,7 @@ export interface StatsProps extends TickerProps {
   ticker: string;
   statResults?: string[];
   setStatResults: Dispatch<SetStateAction<StatsResult[]>>;
+  setChatContext: Dispatch<SetStateAction<ChatContext[]>>;
 }
 
 export type ChartProps = {
@@ -149,4 +150,14 @@ export type Value = {
   raw: number;
   fmt: string;
   longFmt: string;
+};
+
+export type ChatContext = {
+  context: ChatContext | undefined;
+  ticker: string;
+  summary: string;
+};
+export type ChatProps = {
+  disabled: boolean;
+  context: ChatContext | undefined;
 };

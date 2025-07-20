@@ -9,7 +9,8 @@ import { SearchProps } from "@/lib/types";
  */
 export function Search(props: SearchProps) {
   const { context, results = [], setResults } = props;
-  const searchContext = Object.keys(context!);
+  // Flatten all keys from the array of objects
+  const searchContext = context ? context.flatMap(item => Object.keys(item)) : [];
 
   const fuse = new Fuse(searchContext);
   const [searchResults, setSearchResults] = useState<FuseResult<string>[]>([]);
@@ -23,8 +24,10 @@ export function Search(props: SearchProps) {
   }
   function handleAddTicker(ticker: string) {
     if (context) {
-      // @ts-ignore
-      setResults([...results, context[ticker]]);
+      const tickerData = context.find(item => Object.keys(item).includes(ticker));
+      if (tickerData && tickerData[ticker]) {
+        setResults([...results, tickerData[ticker]]);
+      }
     }
   }
 

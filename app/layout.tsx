@@ -40,51 +40,54 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body
-          // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-          className={`${archivoBlack.variable} ${space.variable}`}
-        >
-          <header className="flex justify-between items-center p-4">
-            <div className="flex items-center gap-8">
-              <Link href="/">
-                <Image
-                  src="/logo-text.png"
-                  alt="Stonksville"
-                  className=" transition duration-200"
-                  width={100}
-                  height={40}
-                  priority
-                />
-              </Link>
-            </div>
-            <div className="flex gap-2">
-              <SignedIn>
-                <UserButton />
-              </SignedIn>
-            </div>
-          </header>
+        <body className={`${archivoBlack.variable} ${space.variable}`}>
+          <SignedIn>
+            <header className="flex justify-between items-center p-4">
+              <div className="flex items-center gap-8">
+                <Link href="/">
+                  <Image
+                    src="/logo-text.png"
+                    alt="Stonksville"
+                    className=" transition duration-200"
+                    width={100}
+                    height={40}
+                    priority
+                  />
+                </Link>
+              </div>
+              <div className="flex gap-2">
+                <SignedIn>
+                  <UserButton />
+                </SignedIn>
+              </div>
+            </header>
+          </SignedIn>
 
           <div className="flex items-center justify-items-center">
             <main className="flex flex-col gap-2 tems-center sm:items-start w-4xl mx-auto">
               <SignedOut>
-                <Image
-                  src="/logo.png"
-                  alt="Stonksville"
-                  width={250}
-                  height={40}
-                  priority
-                />
+                <div className="flex justify-center items-center w-full h-screen">
+                  <div className="">
+                    <Image
+                      src="/logo.png"
+                      alt="Stonksville"
+                      width={250}
+                      height={40}
+                      priority
+                    />
+                    <section className="flex gap-3 my-3 justify-center">
+                      <SignedOut>
+                        <SignInButton mode="modal">
+                          <Button>Sign In</Button>
+                        </SignInButton>
+                        <SignUpButton mode="modal">
+                          <Button>Register</Button>
+                        </SignUpButton>
+                      </SignedOut>
+                    </section>
+                  </div>
+                </div>
               </SignedOut>
-              <section className="flex gap-3">
-                <SignedOut>
-                  <SignInButton mode="modal">
-                    <Button>Sign In</Button>
-                  </SignInButton>
-                  <SignUpButton mode="modal">
-                    <Button>Register</Button>
-                  </SignUpButton>
-                </SignedOut>
-              </section>
               <SignedIn>{children}</SignedIn>
             </main>
           </div>

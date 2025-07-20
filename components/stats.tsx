@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import React from "react";
 import { StatsProps, ChartProps } from "@/lib/types";
 import Charts from "@/components/charts";
+import { Alert } from "@/components/retroui/Alert";
+import Image from "next/image";
 
 export default function Stats(props: StatsProps) {
-  const { ticker, setStatResults } = props;
+  const { ticker, setStatResults, setChatContext } = props;
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<null | string>(null);
   const [chartData, setChartData] = useState<ChartProps>();
@@ -32,21 +34,27 @@ export default function Stats(props: StatsProps) {
           },
         );
 
-        if (!response.ok) {
-          console.log(response.body);
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
         const data = await response.json();
-        setStatResults({
-          ticker,
-          data,
-          show: true,
-        });
-        setChartData(data);
-        console.log("Response data:", data);
+
+        if (!response.ok) {
+          setError(data.detail);
+          throw new Error(`HTTP error! status: ${response.status}`);
+        } else {
+          setStatResults({
+            ticker,
+            data,
+            show: true,
+          });
+          setChatContext({
+            ticker,
+            context: data.agent_response,
+          });
+
+          setChartData(data);
+          console.log("Response data:", data);
+        }
       } catch (err) {
-        // @ts-ignore
-        setError(err.message as string);
+        console.log(err);
       } finally {
         setLoading(false);
       }
@@ -56,7 +64,22 @@ export default function Stats(props: StatsProps) {
   }, [setStatResults, ticker]);
 
   if (loading) return <div>Loading stats...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (error)
+    return (
+      <Alert>
+        <Alert.Title>Error</Alert.Title>
+        <Alert.Description className="flex">
+          <Image
+            src="/error.png"
+            alt="Stonksville"
+            width={250}
+            height={250}
+            priority
+          />
+          {error}
+        </Alert.Description>
+      </Alert>
+    );
 
   return <Charts ticker={ticker} data={chartData} />;
 }

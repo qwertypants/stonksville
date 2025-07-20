@@ -3,16 +3,16 @@ import Chat from "@/components/chat";
 import { useState } from "react";
 import TickerSearch from "@/components/tickerSearch";
 import TickerMenu from "@/components/tickerMenu";
-import { StatsResult } from "@/lib/types";
+import { StatsResult, ChatContext } from "@/lib/types";
 import Stats from "@/components/stats";
 
 export default function Home() {
   const [results, setResults] = useState<string[]>([]);
   const [statResults, setStatResults] = useState<StatsResult[]>([]);
-  console.log(results);
   const hasResults = results.length > 0;
+  const [disabled, setDisabled] = useState(false);
+  const [chatContext, setChatContext] = useState<ChatContext | undefined>();
 
-  console.log(statResults);
   return (
     <div className="relative w-full">
       <section className="flex flex-col gap-4">
@@ -26,13 +26,18 @@ export default function Home() {
                 key={index}
                 ticker={result}
                 results={results}
+                setResults={setResults}
                 setStatResults={setStatResults}
+                setChatContext={setChatContext}
               />
             ))}
+            <div id="chart-bottom" />
           </div>
         )}
       </section>
-      {hasResults && <Chat isLoading={false} />}
+      {hasResults && chatContext && (
+        <Chat disabled={false} context={chatContext?.context} />
+      )}
     </div>
   );
 }

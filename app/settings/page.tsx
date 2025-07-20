@@ -1,8 +1,11 @@
 export default function SettingsPage() {
   return (
-    <main className="flex flex-col items-center justify-center ">
+    <main className=" ">
       <h1 className="text-4xl font-bold mb-8">Settings</h1>
-      <p className="text-xl">Logged in</p>
+      <p className="text-xl">
+        👋🏽 Visiting this page without logging in will redirect to you sign.
+        up.{" "}
+      </p>
     </main>
   );
 }
