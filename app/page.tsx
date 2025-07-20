@@ -10,7 +10,7 @@ export default function Home() {
   const [results, setResults] = useState<string[]>([]);
   const [statResults, setStatResults] = useState<StatsResult[]>([]);
   const hasResults = results.length > 0;
-  const [disabled, setDisabled] = useState(false);
+  const [disabled, setDisabled] = useState(true);
   const [chatContext, setChatContext] = useState<ChatContext | undefined>();
 
   return (
@@ -36,7 +36,7 @@ export default function Home() {
         )}
       </section>
       {hasResults && chatContext && (
-        <Chat disabled={false} context={chatContext?.context} />
+        <Chat disabled={disabled} context={chatContext?.context} />
       )}
     </div>
   );

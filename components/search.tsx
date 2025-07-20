@@ -9,8 +9,7 @@ import { SearchProps } from "@/lib/types";
  */
 export function Search(props: SearchProps) {
   const { context, results = [], setResults } = props;
-  // Flatten all keys from the array of objects
-  const searchContext = context ? context.flatMap(item => Object.keys(item)) : [];
+  const searchContext = Object.keys(context!);
 
   const fuse = new Fuse(searchContext);
   const [searchResults, setSearchResults] = useState<FuseResult<string>[]>([]);
@@ -24,10 +23,7 @@ export function Search(props: SearchProps) {
   }
   function handleAddTicker(ticker: string) {
     if (context) {
-      const tickerData = context.find(item => Object.keys(item).includes(ticker));
-      if (tickerData && tickerData[ticker]) {
-        setResults([...results, tickerData[ticker]]);
-      }
+      setResults([...results, context[ticker]]);
     }
   }
 
@@ -40,7 +36,6 @@ export function Search(props: SearchProps) {
     // Delay to allow a click on the element
     setTimeout(resetSearchResults, 100);
   }
-
   return (
     <div
       className={` w-full z-50 mx-auto  overflow-y-scroll bg-white border ${searchResults.length > 0 ? "h-[40vh] drop-shadow-2xl" : ""} `}
@@ -49,6 +44,7 @@ export function Search(props: SearchProps) {
         <Input
           type="search"
           placeholder="Search ticker"
+          className="disabled:opacity-50"
           onKeyDown={handleSearch}
           onBlur={handleBlur}
           onChange={(e) => setSearchText(e.target.value)}
