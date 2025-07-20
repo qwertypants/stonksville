@@ -1,3 +1,6 @@
+/**
+ * RetroUI styled alert component with title and description sub-components.
+ */
 import { HtmlHTMLAttributes } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 
@@ -26,6 +29,9 @@ interface IAlertProps
   extends HtmlHTMLAttributes<HTMLDivElement>,
     VariantProps<typeof alertVariants> {}
 
+/**
+ * Base alert container accepting style variants.
+ */
 const Alert = ({ className, variant, status, ...props }: IAlertProps) => (
   <div
     role="alert"
@@ -36,10 +42,12 @@ const Alert = ({ className, variant, status, ...props }: IAlertProps) => (
 Alert.displayName = "Alert";
 
 type IAlertTitleProps = HtmlHTMLAttributes<HTMLHeadingElement>;
+/** Heading section of the alert. */
 const AlertTitle = ({ className, ...props }: IAlertTitleProps) => (
   <Text as="h5" className={cn(className)} {...props} />
 );
 AlertTitle.displayName = "AlertTitle";
+/** Long-form text for the alert body. */
 
 type IAlertDescriptionProps = HtmlHTMLAttributes<HTMLParagraphElement>;
 const AlertDescription = ({ className, ...props }: IAlertDescriptionProps) => (
@@ -47,6 +55,7 @@ const AlertDescription = ({ className, ...props }: IAlertDescriptionProps) => (
 );
 
 AlertDescription.displayName = "AlertDescription";
+
 
 const AlertComponent = Object.assign(Alert, {
   Title: AlertTitle,

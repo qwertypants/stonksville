@@ -1,3 +1,6 @@
+/**
+ * Fuzzy search component used to look up ticker symbols.
+ */
 import { useState, KeyboardEvent } from "react";
 import Fuse, { FuseResult } from "fuse.js";
 import { Input } from "@/components/retroui/Input";
@@ -34,7 +37,7 @@ export function Search(props: SearchProps) {
   }
 
   function handleBlur() {
-    // Delay to allow a click on the element
+    // Short delay so item clicks register before results disappear
     setTimeout(resetSearchResults, 100);
   }
   return (

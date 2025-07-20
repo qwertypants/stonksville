@@ -1,3 +1,4 @@
+/** Chat box using the `ai-sdk` hooks for conversation. */
 "use client";
 import { useEffect } from "react";
 import { useChat } from "@ai-sdk/react";
@@ -5,6 +6,11 @@ import { Button } from "@/components/retroui/Button";
 import { ChatProps } from "@/lib/types";
 import { prompt } from "@/lib/constants";
 
+/**
+ * Interactive chat panel summarizing analytics context.
+ *
+ * @param props - Contains the context string used to seed the model.
+ */
 export default function Chat(props: ChatProps) {
   const { context } = props;
   const { messages, input, handleInputChange, handleSubmit, setMessages } =
@@ -12,7 +18,7 @@ export default function Chat(props: ChatProps) {
       api: "/api/chat",
     });
 
-  // Reset the messages to use the updated context
+  // Whenever the context changes start a new conversation seeded with it
   useEffect(() => {
     setMessages([
       {
