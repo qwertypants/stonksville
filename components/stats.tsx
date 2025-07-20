@@ -7,7 +7,7 @@ import { Alert } from "@/components/retroui/Alert";
 import Image from "next/image";
 
 export default function Stats(props: StatsProps) {
-  const { ticker, setStatResults, setChatContext } = props;
+  const { ticker, setChatContext } = props;
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<null | string>(null);
   const [chartData, setChartData] = useState<ChartProps>();
@@ -40,11 +40,6 @@ export default function Stats(props: StatsProps) {
           setError(data.detail);
           throw new Error(`HTTP error! status: ${response.status}`);
         } else {
-          setStatResults({
-            ticker,
-            data,
-            show: true,
-          });
           setChatContext({
             ticker,
             context: data.agent_response,
@@ -61,7 +56,7 @@ export default function Stats(props: StatsProps) {
     };
 
     fetchStats();
-  }, [setStatResults, ticker]);
+  }, [ticker]);
 
   if (loading) return <div>Loading stats...</div>;
   if (error)

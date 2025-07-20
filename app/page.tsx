@@ -3,14 +3,12 @@ import Chat from "@/components/chat";
 import { useState } from "react";
 import TickerSearch from "@/components/tickerSearch";
 import TickerMenu from "@/components/tickerMenu";
-import { StatsResult, ChatContext } from "@/lib/types";
+import { ChatContext } from "@/lib/types";
 import Stats from "@/components/stats";
 
 export default function Home() {
   const [results, setResults] = useState<string[]>([]);
-  const [statResults, setStatResults] = useState<StatsResult[]>([]);
   const hasResults = results.length > 0;
-  const [disabled, setDisabled] = useState(true);
   const [chatContext, setChatContext] = useState<ChatContext | undefined>();
 
   return (
@@ -27,7 +25,6 @@ export default function Home() {
                 ticker={result}
                 results={results}
                 setResults={setResults}
-                setStatResults={setStatResults}
                 setChatContext={setChatContext}
               />
             ))}
@@ -35,9 +32,7 @@ export default function Home() {
           </div>
         )}
       </section>
-      {hasResults && chatContext && (
-        <Chat disabled={disabled} context={chatContext?.context} />
-      )}
+      {hasResults && chatContext && <Chat context={chatContext?.context} />}
     </div>
   );
 }

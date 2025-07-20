@@ -6,7 +6,7 @@ import { ChatProps } from "@/lib/types";
 import { prompt } from "@/lib/constants";
 
 export default function Chat(props: ChatProps) {
-  const { disabled, context } = props;
+  const { context } = props;
   const { messages, input, handleInputChange, handleSubmit, setMessages } =
     useChat({
       api: "/api/chat",
@@ -26,7 +26,6 @@ export default function Chat(props: ChatProps) {
 
   if (!context) return null;
 
-  console.log(messages);
   return (
     <div className="flex flex-col max-h-[25vh] w-full  border bg-white">
       <div className="flex-1 overflow-y-auto space-y-4">
@@ -61,15 +60,8 @@ export default function Chat(props: ChatProps) {
             onChange={handleInputChange}
             className="w-full px-2"
             placeholder="Type your message..."
-            disabled={disabled}
           />
-          <Button
-            type="submit"
-            disabled={disabled}
-            className="disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Send
-          </Button>
+          <Button type="submit">Send</Button>
         </div>
       </form>
     </div>

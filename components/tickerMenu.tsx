@@ -6,14 +6,16 @@ export default function TickerMenu(props: TickerProps) {
   const { results, setResults } = props;
 
   function handleRemoveSelection(selection: string) {
-    const newResults = results.filter((res) => res !== selection);
-    setResults(newResults);
+    const newResults = results?.filter((res) => res !== selection);
+    if (newResults) {
+      setResults(newResults);
+    }
   }
   return (
     <Card className="">
       <Card.Header>
         <Card.Content className="grid grid-cols-2 md:grid-cols-4 gap-4 p-0">
-          {results.map((item, index) => (
+          {results?.map((item, index) => (
             <div className="grid gap-2 border" key={index}>
               <div className="p-2 flex items-start justify-between ">
                 <span className="text-sm">{item}</span>

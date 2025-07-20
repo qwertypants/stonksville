@@ -23,6 +23,7 @@ export function Search(props: SearchProps) {
   }
   function handleAddTicker(ticker: string) {
     if (context) {
+      // @ts-expect-error We're looking for text, it's expecting an index. Okay by me!
       setResults([...results, context[ticker]]);
     }
   }

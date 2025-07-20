@@ -8,7 +8,7 @@ import Image from "next/image";
 export default function TickerSearch(props: TickerProps) {
   const { results, setResults } = props;
   const [tickers, setTickers] = useState<Record<string, string>[]>();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<null | string>();
 
   useEffect(() => {
@@ -22,7 +22,8 @@ export default function TickerSearch(props: TickerProps) {
         setTickers(data.data.tickers);
       } catch (err) {
         console.error("Error fetching tickers:", err);
-        // @ts-ignore
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
         setError(err.message as string);
       } finally {
         setLoading(false);
@@ -32,6 +33,7 @@ export default function TickerSearch(props: TickerProps) {
     getTickers();
   }, []);
 
+  if (loading) return <div>Loading tickers...</div>;
   if (error)
     return (
       <Alert>

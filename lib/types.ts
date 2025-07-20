@@ -24,7 +24,7 @@ export interface StatsProps extends TickerProps {
 
 export type ChartProps = {
   ticker: string;
-  data: AgentResponse;
+  data?: AgentResponse;
 };
 
 export type AgentResponse = {
@@ -158,6 +158,5 @@ export type ChatContext = {
   summary: string;
 };
 export type ChatProps = {
-  disabled: boolean;
   context: ChatContext | undefined;
 };
