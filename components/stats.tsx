@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import React from "react";
-import { StatsProps, ChartProps } from "@/lib/types";
+import { StatsProps, ChartProps, AgentResponse } from "@/lib/types";
 import Charts from "@/components/charts";
 import { Alert } from "@/components/retroui/Alert";
 import Image from "next/image";
@@ -75,6 +75,8 @@ export default function Stats(props: StatsProps) {
         </Alert.Description>
       </Alert>
     );
-
-  return <Charts ticker={ticker} data={chartData} />;
+  if (!chartData) return null;
+  return (
+    <Charts ticker={ticker} data={chartData as unknown as AgentResponse} />
+  );
 }

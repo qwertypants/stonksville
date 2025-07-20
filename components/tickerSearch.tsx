@@ -8,7 +8,7 @@ import Image from "next/image";
 export default function TickerSearch(props: TickerProps) {
   const { results, setResults } = props;
   const [tickers, setTickers] = useState<Record<string, string>[]>();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<null | string>();
 
   useEffect(() => {

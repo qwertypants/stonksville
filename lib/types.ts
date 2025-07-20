@@ -9,22 +9,15 @@ export interface SearchProps extends TickerProps {
   context: Record<string, string>[] | undefined;
 }
 
-export type StatsResult = {
-  ticker: string;
-  show: boolean;
-  data: unknown;
-};
-
 export interface StatsProps extends TickerProps {
   ticker: string;
   statResults?: string[];
-  setStatResults: Dispatch<SetStateAction<StatsResult[]>>;
-  setChatContext: Dispatch<SetStateAction<ChatContext[]>>;
+  setChatContext: Dispatch<SetStateAction<ChatContext | undefined>>;
 }
 
 export type ChartProps = {
   ticker: string;
-  data?: AgentResponse;
+  data: AgentResponse;
 };
 
 export type AgentResponse = {
@@ -155,7 +148,6 @@ export type Value = {
 export type ChatContext = {
   context: ChatContext | undefined;
   ticker: string;
-  summary: string;
 };
 export type ChatProps = {
   context: ChatContext | undefined;
