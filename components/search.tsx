@@ -4,8 +4,11 @@ import { Input } from "@/components/retroui/Input";
 import { SearchProps } from "@/lib/types";
 
 /**
- * Provides a fuzzy-search input for selecting options.
- * @param props list of searchable options.
+ * Provides a fuzzy search input for selecting ticker symbols. Results from
+ * Fuse.js are displayed while the input is focused.
+ *
+ * @param props - Component configuration including the search context and
+ * current selection state.
  */
 export function Search(props: SearchProps) {
   const { context, results, setResults } = props;
@@ -17,6 +20,7 @@ export function Search(props: SearchProps) {
   function handleSearch(event: KeyboardEvent<HTMLInputElement>) {
     const search = event.currentTarget.value;
     setSearchText(search);
+    // Fuse.js returns fuzzy matches ordered by score
     const result = fuse.search(search);
     setSearchResults(result);
   }

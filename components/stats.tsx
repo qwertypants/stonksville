@@ -3,6 +3,14 @@ import { Chart } from "react-charts";
 import { Card } from "@/components/retroui/Card";
 import { StatsProps, Dividend, Seasonality, InsiderTrade } from "@/lib/types";
 
+/**
+ * Display a collection of charts summarizing financial data for a ticker.
+ */
+
+/**
+ * Renders multiple charts (earnings, analyst ratings, dividends, etc.) based
+ * on the supplied ticker data.
+ */
 export default function Stats(props: StatsProps) {
   const { ticker } = props;
   // 1. Earnings: EPS vs Revenue (in billions)
@@ -48,6 +56,7 @@ export default function Stats(props: StatsProps) {
     }
     return acc;
   }, {});
+  // Use the averaged rating per day so the chart isn't too noisy
   const analystSeries = [
     {
       label: "Avg Price Target",
@@ -72,6 +81,7 @@ export default function Stats(props: StatsProps) {
   ];
 
   // 4. Congress Trades: count buys vs sells per date
+  // Aggregate congressional trades by day and buy/sell type
   const tradesByDate = ticker.agent_sources.congress_trades.reduce<
     Record<string, { buy: number; sell: number }>
   >((acc, { tx_date, tx_type }) => {
@@ -105,6 +115,7 @@ export default function Stats(props: StatsProps) {
   const seasonalitySeries = [
     {
       label: "Avg Monthly Change",
+      // Month values come as strings; parse to numbers for the chart
       data: ticker.agent_sources.seasonality.map((s: Seasonality) => ({
         primary: s.month,
         secondary: parseFloat(s.avg_change),
@@ -116,6 +127,7 @@ export default function Stats(props: StatsProps) {
   const insiderSeries = [
     {
       label: "Insider Shares Traded",
+      // Use the raw share count for numeric accuracy
       data: ticker.agent_sources.insider_trades.map((t: InsiderTrade) => ({
         primary: new Date(t.date),
         secondary: t.shares.raw,

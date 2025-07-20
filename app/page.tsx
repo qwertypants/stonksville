@@ -1,4 +1,9 @@
 "use client";
+/**
+ * Home page of the application.  It allows searching for ticker symbols,
+ * displays the currently selected tickers, and provides a basic chat
+ * interface for interacting with the backend agent.
+ */
 import Chat from "@/components/chat";
 import { useState } from "react";
 import TickerSearch from "@/components/tickerSearch";
@@ -7,6 +12,10 @@ import { AgentResponse } from "@/lib/types";
 import Stats from "@/components/stats";
 import { aapl } from "@/lib/mock";
 
+/**
+ * Top level React component rendered at "/".  Uses in-memory mock data for
+ * statistics and manages search results in local state.
+ */
 export default function Home() {
   const [results, setResults] = useState<string[]>([]);
   console.log(results);

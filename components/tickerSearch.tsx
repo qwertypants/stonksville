@@ -1,4 +1,8 @@
 "use client";
+/**
+ * Wrapper around the {@link Search} component that loads available ticker
+ * symbols (currently from mock data).  Handles loading and error states.
+ */
 import {
   SetStateAction,
   useEffect,
@@ -11,6 +15,10 @@ import { Search } from "@/components/search";
 import { objectToArray } from "@/lib/utils";
 import { TickerProps } from "@/lib/types";
 
+/**
+ * Component responsible for fetching tickers (mocked for now) and rendering
+ * a search box for selection.
+ */
 export default function TickerSearch(props: TickerProps) {
   const { results, setResults } = props;
   const [tickers, setTickers] = useState<string[]>(

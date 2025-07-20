@@ -1,3 +1,6 @@
+/**
+ * Placeholder settings page shown to authenticated users.
+ */
 export default function SettingsPage() {
   return (
     <main className="flex flex-col items-center justify-center ">

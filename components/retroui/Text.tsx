@@ -2,6 +2,10 @@ import type { ElementType, HTMLAttributes } from "react";
 import { type VariantProps, cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
+/**
+ * Typography component supporting multiple HTML tags via the `as` prop.
+ */
+
 const textVariants = cva("font-head", {
   variants: {
     as: {
@@ -27,6 +31,10 @@ interface TextProps
   className?: string;
 }
 
+/**
+ * Flexible text component which renders different HTML elements based on the
+ * `as` prop. Useful for keeping typography consistent across the app.
+ */
 export const Text = (props: TextProps) => {
   const { className, as, ...otherProps } = props;
   const Tag: ElementType = as || "p";

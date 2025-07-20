@@ -1,9 +1,16 @@
 import React, { InputHTMLAttributes } from "react";
 
+/**
+ * Basic text input field that applies Retro UI styles and forwards props.
+ */
+
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
 }
 
+/**
+ * Styled input element. Supports all default HTML input attributes.
+ */
 export const Input: React.FC<InputProps> = ({
   type = "text",
   placeholder = "Enter text",

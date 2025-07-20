@@ -1,4 +1,8 @@
 "use client";
+/**
+ * Simple chat panel that leverages `useChat` from `@ai-sdk/react` to
+ * communicate with the server-side AI endpoint.
+ */
 
 import { useChat } from "@ai-sdk/react";
 import { Button } from "@/components/retroui/Button";
@@ -6,8 +10,14 @@ import { Button } from "@/components/retroui/Button";
 type ChatProps = {
   isLoading: boolean;
 };
+/**
+ * Renders the chat UI.  Messages are managed by the `useChat` hook which
+ * abstracts server communication.
+ */
 export default function Chat(props: ChatProps) {
   const { isLoading } = props;
+  // `useChat` handles message state and exposes helper callbacks for input
+  // management and form submission.
   const { messages, input, handleInputChange, handleSubmit } = useChat({
     api: "/api/chat",
   });

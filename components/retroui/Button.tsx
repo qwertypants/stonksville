@@ -2,6 +2,11 @@ import { cn } from "@/lib/utils";
 import { cva, VariantProps } from "class-variance-authority";
 import React, { ButtonHTMLAttributes } from "react";
 
+/**
+ * Generic button component built on top of `class-variance-authority` for
+ * consistent styling across variants and sizes.
+ */
+
 const buttonVariants = cva(
   "font-head transition-all outline-hidden cursor-pointer duration-200 font-medium flex items-center",
   {
@@ -33,6 +38,10 @@ export interface IButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {}
 
+/**
+ * Reusable button component. Forwarding the ref allows parent components to
+ * imperatively focus or measure the button when needed.
+ */
 export const Button = React.forwardRef<HTMLButtonElement, IButtonProps>(
   (
     {

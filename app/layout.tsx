@@ -1,3 +1,8 @@
+/**
+ * Root layout for the Next.js application.  It sets up global fonts,
+ * provides authentication context via Clerk, and renders the common
+ * page chrome (header and auth actions).
+ */
 import type { Metadata } from "next";
 import { Archivo_Black, Space_Grotesk } from "next/font/google";
 import Image from "next/image";
@@ -32,6 +37,11 @@ export const metadata: Metadata = {
   description: "Your Portfolio’s Favorite Side Quest.",
 };
 
+/**
+ * Layout wrapper used by every page.  It renders the application header
+ * and conditionally exposes Clerk auth buttons.  Child pages are displayed
+ * only when a user is signed in.
+ */
 export default function RootLayout({
   children,
 }: Readonly<{

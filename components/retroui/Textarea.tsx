@@ -1,6 +1,13 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 
+/**
+ * Base textarea component with styling consistent with the Retro UI kit.
+ */
+
+/**
+ * Styled textarea element.
+ */
 export function Textarea({
   type = "text",
   placeholder = "Enter text...",
